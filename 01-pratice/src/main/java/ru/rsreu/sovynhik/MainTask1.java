@@ -3,9 +3,12 @@ package ru.rsreu.sovynhik;
 import ru.rsreu.sovynhik.models.Auto;
 import ru.rsreu.sovynhik.models.User;
 import ru.rsreu.sovynhik.service.UserService;
+import ru.rsreu.sovynhik.utils.DatabaseCleaner;
 
-public class Main {
+public class MainTask1 {
     public static void main(String[] args) {
+        DatabaseCleaner.clearAllTables();
+
         UserService userService = new UserService();
 
         User user = new User("Masha", 26);
@@ -21,6 +24,6 @@ public class Main {
 
         userService.updateUser(user);
 
-        System.out.println("Готово! Проверьте таблицы.");
+        System.out.println("Задание 1. Готово! Проверьте таблицы.");
     }
 }

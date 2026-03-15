@@ -1,10 +1,10 @@
-package utils;
+package ru.rsreu.sovynhik.utils;
 
-import models.Auto;
-import models.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import ru.rsreu.sovynhik.models.Auto;
+import ru.rsreu.sovynhik.models.User;
 
 public class HibernateSessionFactoryUtil {
 
@@ -18,11 +18,11 @@ public class HibernateSessionFactoryUtil {
                 Configuration configuration = new Configuration().configure();
                 configuration.addAnnotatedClass(User.class);
                 configuration.addAnnotatedClass(Auto.class);
-                StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
+                StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
+                        .applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(builder.build());
-
             } catch (Exception e) {
-                System.out.println("Исключение!" + e);
+                System.out.println("Исключение! " + e);
             }
         }
         return sessionFactory;
