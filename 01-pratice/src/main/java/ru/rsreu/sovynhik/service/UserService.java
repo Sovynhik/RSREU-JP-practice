@@ -1,8 +1,8 @@
-package services;
+package ru.rsreu.sovynhik.service;
 
-import dao.UserDao;
-import models.Auto;
-import models.User;
+import ru.rsreu.sovynhik.dao.UserDao;
+import ru.rsreu.sovynhik.models.Auto;
+import ru.rsreu.sovynhik.models.User;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ public class UserService {
     private UserDao usersDao = new UserDao();
 
     public UserService() {
+
     }
 
     public User findUser(int id) {
