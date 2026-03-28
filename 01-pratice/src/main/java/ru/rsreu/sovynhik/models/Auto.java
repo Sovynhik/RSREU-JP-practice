@@ -25,7 +25,6 @@ public class Auto {
         this.color = color;
     }
 
-    // геттеры и сеттеры
     public int getId() { return id; }
     public String getModel() { return model; }
     public void setModel(String model) { this.model = model; }

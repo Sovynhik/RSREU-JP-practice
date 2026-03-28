@@ -7,11 +7,9 @@ import ru.rsreu.sovynhik.models.User;
 import java.util.List;
 
 public class UserService {
-    private UserDao usersDao = new UserDao();
+    private final UserDao usersDao = new UserDao();
 
-    public UserService() {
-
-    }
+    public UserService() { }
 
     public User findUser(int id) {
         return usersDao.findById(id);
