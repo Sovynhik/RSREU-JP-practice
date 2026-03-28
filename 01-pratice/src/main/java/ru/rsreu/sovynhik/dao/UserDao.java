@@ -11,40 +11,48 @@ import java.util.List;
 public class UserDao {
 
     public User findById(int id) {
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(User.class, id);
+        try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
+            return session.createQuery(
+                            "SELECT u FROM User u LEFT JOIN FETCH u.autos WHERE u.id = :id", User.class)
+                    .setParameter("id", id)
+                    .uniqueResult();
+        }
     }
 
     public void save(User user) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        session.persist(user);
-        tx1.commit();
-        session.close();
+        try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction tx = session.beginTransaction();
+            session.persist(user);
+            tx.commit();
+        }
     }
 
     public void update(User user) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        session.merge(user);
-        tx1.commit();
-        session.close();
+        try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction tx = session.beginTransaction();
+            session.merge(user);
+            tx.commit();
+        }
     }
 
     public void delete(User user) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        session.remove(user);
-        tx1.commit();
-        session.close();
+        try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
+            Transaction tx = session.beginTransaction();
+            session.remove(user);
+            tx.commit();
+        }
     }
 
     public Auto findAutoById(int id) {
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Auto.class, id);
+        try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
+            return session.find(Auto.class, id);
+        }
     }
 
     public List<User> findAll() {
-        List<User> users = (List<User>) HibernateSessionFactoryUtil.getSessionFactory()
-                .openSession().createQuery("From User", User.class).list();
-        return users;
+        try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
+            return session.createQuery("FROM User u LEFT JOIN FETCH u.autos", User.class)
+                    .getResultList();
+        }
     }
 }

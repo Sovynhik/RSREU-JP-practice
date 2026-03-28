@@ -3,30 +3,31 @@ package ru.rsreu.sovynhik;
 import ru.rsreu.sovynhik.models.Auto;
 import ru.rsreu.sovynhik.models.User;
 import ru.rsreu.sovynhik.service.UserService;
-import ru.rsreu.sovynhik.utils.DatabaseCleaner;
 
-public class MainTask3 {
+public class Task3 {
     public static void main(String[] args) {
-        DatabaseCleaner.clearAllTables();
-
         UserService userService = new UserService();
 
-        User user = new User("Masha",26);
+        User user = new User("Masha", 26);
         userService.saveUser(user);
 
         Auto ferrari = new Auto("Ferrari", "red");
         user.addAuto(ferrari);
 
         Auto ford = new Auto("Ford", "black");
-        ford.setUser(user);
         user.addAuto(ford);
 
         userService.updateUser(user);
+
+        System.out.println("Авто добавлены. User id = " + user.getId());
+
         user.setName("Sasha");
-        userService.updateUser(user);
+        User managedUser = userService.findUser(user.getId());
+        managedUser.setName("Sasha");
+        userService.updateUser(managedUser);
 
-        userService.deleteUser(user);
+        userService.deleteUser(managedUser);
 
-        System.out.println("Задание 3. Готово! Проверьте таблицы.");
+        System.out.println("Task #3. Complete! Check tables.");
     }
 }
