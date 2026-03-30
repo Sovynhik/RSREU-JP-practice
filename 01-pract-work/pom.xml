@@ -5,15 +5,14 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ru.rsreu.sovynhik</groupId>
-    <artifactId>project</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <parent>
+        <groupId>ru.rsreu.sovynhik</groupId>
+        <artifactId>project</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
 
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <junit.version>5.10.0</junit.version>
-    </properties>
+    <artifactId>01-pract-work</artifactId>
 
     <dependencies>
 
