@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.savushkin</groupId>
-    <artifactId>pr_1</artifactId>
+    <artifactId>01-pract-work</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
