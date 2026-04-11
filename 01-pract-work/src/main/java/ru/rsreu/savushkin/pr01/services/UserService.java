@@ -1,15 +1,16 @@
-package ru.rsreu.sovynhik.service;
+package ru.rsreu.savushkin.pr01.services;
 
-import ru.rsreu.sovynhik.dao.UserDao;
-import ru.rsreu.sovynhik.models.Auto;
-import ru.rsreu.sovynhik.models.User;
+import ru.rsreu.savushkin.pr01.dao.UserDao;
+import ru.rsreu.savushkin.pr01.models.Auto;
+import ru.rsreu.savushkin.pr01.models.User;
 
 import java.util.List;
 
 public class UserService {
-    private final UserDao usersDao = new UserDao();
+    private UserDao usersDao = new UserDao();
 
-    public UserService() { }
+    public UserService() {
+    }
 
     public User findUser(int id) {
         return usersDao.findById(id);
